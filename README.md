@@ -17,4 +17,4 @@
 
 # その他
 - 実行環境の確保が難しい場合はブラウザ上の実行環境を使うといいかも
-　- [paiza.io](https://paiza.io/?locale=ja-jp)
+  - [paiza.io](https://paiza.io/?locale=ja-jp)
