@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+    </head>
+    <body>
+        <script>
+            document.write("カードを裏返せ<br>");
+            var hundred = [];
+            for(var i = 0; i < 100; i++) {
+                hundred[i] = false;
+            }
+
+            var count = 0;
+
+            for(var x = 0; x < 100; x++) {
+                
+//                0~99のカウントなので人数は1を加算
+                var turn = x + 1;
+                console.log(turn + "人目");
+
+                for(var i = turn; i < 100; ) {
+
+                    console.log("i:" + (i));
+                    if(hundred[i]){
+                        hundred[i] = false;
+                        count--;
+                    } else {
+                        hundred[i] = true;
+                        count++;
+                    }
+
+//                    次のカードをめくるのは人数+1
+                    i += (turn + 1);
+
+                    console.log(turn + "人目 count:" + count);
+                }
+            }
+
+            for(var i = 0; i < 100; i++) {
+                if(!hundred[i]) {
+                    document.write(i + 1 + "\n");
+                }
+            }
+        </script>
+    </body>
+</html>
