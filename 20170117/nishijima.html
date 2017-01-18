@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<meta charset="utf-8">
+    <head>
+    </head>
+    <body>
+        <script>
+            document.write("棒の切り分け<br>");
+            
+            // 棒の数
+//            var rod_num = 1;
+            // 棒の長さ
+//            var rod_length = 8;
+            var rod_length = [100];
+            // 人の数
+            var human_num = 5;
+            // 分割回数
+            var count = 0;
+
+            // これは再起関数でやろうとしたときの名残
+//            console.log(rodhalf(rod_length, count, rod_num, human_num));
+//            
+//
+//            function rodhalf(rod_length, count, rod_num, human_num) {
+//                console.log("rod_length:" + rod_length);
+//
+//                if(rod_length / 2 >1) {
+//                    var new_rod_num = 0;
+//                    if(rod_num  human_num) {
+//                        new_rod_num = rod_num * 2;
+//                    } else {
+//
+//                    }
+//                    return rodhalf(rod_length / 2, count) + 1;
+//                } else {
+//                    return 1;
+//                }
+//            }
+
+            var count = 1
+
+            // 1回に分割する前の棒の数
+            var pre_rod_num;
+            // 配列のインデックス値
+            var index = 0;
+            
+            do {
+                pre_rod_num = rod_length.length;
+
+                for(var i = 1; i <= pre_rod_num && i <= human_num; i++) {
+
+                    console.log("index:" + index);
+                    index = getTargetIndex(rod_length, index);
+                    console.log("get index:" + index);
+                    if(index == -1) break;
+
+                    var result = rodHarfV2(rod_length[index]);
+                    rod_length.splice(index, 1, result[0], result[1]);
+
+                    console.log(count + "回目 " + i + "人目 " +rod_length);
+                    document.write(count + "回目 " + i + "人目 " +rod_length + "<br>");
+                    
+                    // 分割した分インデックスを進める
+                    index += 2;
+                }
+
+                // 全体で1以外の数字がないかチェック
+//                index = getTargetIndex(rod_length, 0);
+//                if(index == -1) break;
+
+                count++;
+            } while(index != -1);
+
+            function rodHarfV2(length) {
+                return [Math.floor(length/2), Math.ceil(length/2)];
+            }
+
+            // 1以外の値がセットされている配列のインデックスを返却う
+            function getTargetIndex(arr, start) {
+                for(var i = start; i < arr.length; i++) {
+                    if(arr[i] != 1) {
+                        return i;
+                    }
+                }
+
+                // 存在しない場合は、最初からカウント
+                for(var i = 0; i < arr.length; i++) {
+                    if(arr[i] != 1) {
+                        return i;
+                    }
+                }
+
+                // 1以外の値が存在しない場合
+                return -1;
+            }
+        </script>
+    </body>
+</html>
